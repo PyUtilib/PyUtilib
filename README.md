@@ -1,7 +1,7 @@
 ![GitHub CI](https://github.com/PyUtilib/pyutilib/workflows/GitHub%20CI/badge.svg?branch=master)
 ![codecov.io](https://codecov.io/github/PyUtilib/pyutilib/coverage.svg?branch=master)
 [![Depsy Software Impact](http://depsy.org/api/package/pypi/PyUtilib/badge.svg)](http://depsy.org/package/python/PyUtilib)
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 
 ## PyUtilib Overview
 
@@ -10,6 +10,8 @@ including a well-developed component architecture and extensions
 to the PyUnit testing framework. PyUtilib has been developed to
 support several Python-centric projects, especially
 [Pyomo](http://pyomo.org).
+
+This repository is currently inactive.
 
 PyUtilib is available under the BSD License.
 
