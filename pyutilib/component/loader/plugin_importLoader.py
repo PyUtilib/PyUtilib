@@ -13,7 +13,8 @@
 __all__ = ['ImportLoader']
 
 from glob import glob
-import imp
+import importlib.util
+import importlib.machinery
 import re
 import os
 import sys
@@ -22,6 +23,15 @@ import logging
 from pyutilib.component.config import ManagedSingletonPlugin
 from pyutilib.component.core import implements, ExtensionPoint, IIgnorePluginWhenLoading, IPluginLoader, Plugin
 
+def load_source(modname, filename):
+    loader = importlib.machinery.SourceFileLoader(modname, filename)
+    spec = importlib.util.spec_from_file_location(modname, filename, loader=loader)
+    module = importlib.util.module_from_spec(spec)
+    # The module is always executed and not cached in sys.modules.
+    # Uncomment the following line to cache the module.
+    # sys.modules[module.__name__] = module
+    loader.exec_module(module)
+    return module
 
 class ImportLoader(ManagedSingletonPlugin):
     """Loader that looks for Python source files in the plugins directories,
@@ -53,7 +63,7 @@ class ImportLoader(ManagedSingletonPlugin):
                 if plugin_name not in sys.modules and name_re.match(
                         plugin_name):
                     try:
-                        module = imp.load_source(plugin_name, plugin_file)
+                        module = load_source(plugin_name, plugin_file)
                         if generate_debug_messages:
                             env.log.debug('Loading file plugin %s from %s' % \
                                   (plugin_name, plugin_file))
